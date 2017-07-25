@@ -1,32 +1,29 @@
 // Check off specific todos by clicking 
 
-$("li").click(function() {
+$("ul").on("click", "li", function() {
     $(this).toggleClass("completed");
-})
+});
 
 // Click on X to delete Todo
-$("span").click(function(event){
-    // alert("clicked on a span");
+
+$("ul").on("click", "span", function(event){
     $(this).parent().fadeOut(500, function() {
         $(this).remove();
     });
     event.stopPropagation();
 }); 
 
-// Cara yang salah, cz akan menampilkan banyak sekali alert
-
-/*
-
-$("ul").click(function(){
-    alert("clicked on a ul");
+$("input[type='text']").keypress(function(event){
+    // console.log("Key Press!");
+    if(event.which === 13){
+        // console.log("You hit enter!");
+        // console.log($(this).val());
+        
+        // Grabbing new todo text from input
+        var todoText = $(this).val();
+        $(this).val("");
+        // Create a new li and add to ul
+        // $("ul").append("<li>THIS IS A NEW LI THAT WE APPENDED TO THIS UL <li>");
+        $("ul").append("<li><span>X</span> " + todoText + "</li>")
+    }
 });
-
-$("#container").click(function(){
-    alert("clicked on a container div");
-});
-
-$("body").click(function(){
-    alert("clicked on a body");
-});
-
-*/
